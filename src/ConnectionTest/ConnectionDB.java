@@ -41,9 +41,9 @@ public class ConnectionDB {
         return null;
     }
 
-    public void prepareSetQuery(String query, String username, String email, String telephone, String group, String password) {
+    public void prepareSetQuery(String sql, String username, String email, String telephone, String group, String password) {
         try {
-            PreparedStatement pst = postgresConnection.prepareStatement(query);
+            PreparedStatement pst = postgresConnection.prepareStatement(sql);
             pst.setString(1, username);
             pst.setString(2, email);
             pst.setString(3, telephone);
@@ -51,15 +51,14 @@ public class ConnectionDB {
             pst.setString(5, password);
             pst.execute();
             pst.close();
-
         } catch(SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void prepareQuery(String query) {
+    public void prepareQuery(String sql) {
         try {
-            PreparedStatement pst = postgresConnection.prepareStatement(query);
+            PreparedStatement pst = postgresConnection.prepareStatement(sql);
             pst.execute();
             pst.close();
         } catch(SQLException e) {

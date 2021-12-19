@@ -71,19 +71,17 @@ public class TableModel extends AbstractTableModel {
         String sql = "INSERT INTO users(username, email, telephone, group_number, password) VALUES (?,?,?,?,?)";
         try {
             connect.prepareSetQuery(sql, username, email, telephone, group, password);
-            updateTable(connect);
             JOptionPane.showMessageDialog(null, "Пользователь добавлен!");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteField(ConnectionDB connect, String cell) {
-        String sql = "DELETE FROM users WHERE id = " + cell;
+    public void deleteField(ConnectionDB connect, String id) {
+        String sql = "DELETE FROM users WHERE id = " + id;
         try {
             connect.prepareQuery(sql);
-            updateTable(connect);
-            JOptionPane.showMessageDialog(null, "Пользователь c id = "+ cell + " удален!");
+            JOptionPane.showMessageDialog(null, "Пользователь c id = "+ id + " удален!");
         } catch (Exception e) {
             e.printStackTrace();
         }

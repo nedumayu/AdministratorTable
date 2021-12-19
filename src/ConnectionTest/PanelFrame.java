@@ -9,8 +9,8 @@ public class PanelFrame extends JPanel {
 
     private final ConnectionDB connect;
 
-    private final TableModel tb = new TableModel(); //модель таблицы
-    private final JTable table = new JTable(tb); //создаем таблицу и указываем модель
+    private final TableModel tb = new TableModel();
+    private final JTable table = new JTable(tb);
 
     private final JLabel usernameLabel = new JLabel("ФИО");
     private final JLabel emailLabel = new JLabel("E-mail");
@@ -34,7 +34,6 @@ public class PanelFrame extends JPanel {
         JScrollPane tableScroll = new JScrollPane(table);
         tableScroll.setPreferredSize(new Dimension(700, 200));
 
-        //таблица
         add(tableScroll, new GridBagConstraints(0, 0, 3, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.BOTH,
                 new Insets(1, 1, 1, 1), 0, 0));
@@ -92,6 +91,7 @@ public class PanelFrame extends JPanel {
             String email = emailTextField.getText();
             String telephone = telephoneTextField.getText();
             String group = groupTextField.getText();
+
             String password = "$2a$10$0l2YuN.z9q5kdATAaCip3urWGcrFbf8JG7p9KUmFra/3aM5rq/38S";  //123123
 
             tb.addNewField(connect, username, email, telephone, group, password);
@@ -109,9 +109,9 @@ public class PanelFrame extends JPanel {
     public class DeleteButtonActionListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             int row = table.getSelectedRow();
-            String cell = table.getModel().getValueAt(row, 0).toString();
-            tb.deleteField(connect, cell);
+            String id = table.getModel().getValueAt(row, 0).toString();
 
+            tb.deleteField(connect, id);
             tb.updateTable(connect);
             repaint();
         }
