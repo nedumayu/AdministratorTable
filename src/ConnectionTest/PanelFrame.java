@@ -16,13 +16,11 @@ public class PanelFrame extends JPanel {
     private final JLabel emailLabel = new JLabel("E-mail");
     private final JLabel groupLabel = new JLabel("Номер группы");
     private final JLabel telephoneLabel = new JLabel("Телефон");
-    private final JLabel passwordLabel = new JLabel("Пароль");
 
     private final JTextField usernameTextField = new JTextField();
     private final JTextField emailTextField = new JTextField();
     private final JTextField groupTextField = new JTextField();
     private final JTextField telephoneTextField = new JTextField();
-    private final JTextField passwordTextField = new JTextField();
 
     private final JButton addButton = new JButton("Add");
     private final JButton deleteButton = new JButton("Delete");
@@ -34,7 +32,7 @@ public class PanelFrame extends JPanel {
 
     public void init() {
         JScrollPane tableScroll = new JScrollPane(table);
-        tableScroll.setPreferredSize(new Dimension(500, 200));
+        tableScroll.setPreferredSize(new Dimension(700, 200));
 
         //таблица
         add(tableScroll, new GridBagConstraints(0, 0, 3, 1, 1, 1,
@@ -68,15 +66,8 @@ public class PanelFrame extends JPanel {
         //поле ввода телефона
         add(telephoneLabel, new GridBagConstraints(0, 5, 1, 1, 1, 1,
                 GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL,
-                new Insets(1, 1, 1, 1), 0, 0));
-        add(telephoneTextField, new GridBagConstraints(1, 5, 1, 1, 1, 1,
-                GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL,
-                new Insets(1, 1, 1, 1), 0, 0));
-
-        add(passwordLabel, new GridBagConstraints(0, 6, 1, 1, 1, 1,
-                GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL,
                 new Insets(1, 1, 30, 1), 0, 0));
-        add(passwordTextField, new GridBagConstraints(1, 6, 1, 1, 1, 1,
+        add(telephoneTextField, new GridBagConstraints(1, 5, 1, 1, 1, 1,
                 GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL,
                 new Insets(1, 1, 30, 1), 0, 0));
 
@@ -101,7 +92,7 @@ public class PanelFrame extends JPanel {
             String email = emailTextField.getText();
             String telephone = telephoneTextField.getText();
             String group = groupTextField.getText();
-            String password = passwordTextField.getText();
+            String password = "$2a$10$0l2YuN.z9q5kdATAaCip3urWGcrFbf8JG7p9KUmFra/3aM5rq/38S";  //123123
 
             tb.addNewField(connect, username, email, telephone, group, password);
 
@@ -109,7 +100,6 @@ public class PanelFrame extends JPanel {
             emailTextField.setText(null);
             telephoneTextField.setText(null);
             groupTextField.setText(null);
-            passwordTextField.setText(null);
 
             tb.updateTable(connect);
             repaint();

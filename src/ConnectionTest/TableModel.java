@@ -72,7 +72,7 @@ public class TableModel extends AbstractTableModel {
         try {
             connect.prepareSetQuery(sql, username, email, telephone, group, password);
             updateTable(connect);
-            JOptionPane.showMessageDialog(null, "Пользователь добавлен! Чтобы увидеть результат, обновите страницу");
+            JOptionPane.showMessageDialog(null, "Пользователь добавлен!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,7 +83,7 @@ public class TableModel extends AbstractTableModel {
         try {
             connect.prepareQuery(sql);
             updateTable(connect);
-            JOptionPane.showMessageDialog(null, "Пользователь c id = "+ cell + " удален! Чтобы увидеть результат, обновите страницу");
+            JOptionPane.showMessageDialog(null, "Пользователь c id = "+ cell + " удален!");
         } catch (Exception e) {
             e.printStackTrace();
         }

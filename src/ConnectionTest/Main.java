@@ -21,7 +21,7 @@ public class Main {
         panel.init();
         frame.add(panel, BorderLayout.CENTER);
 
-        frame.setVisible(true);
         frame.pack();
+        frame.setVisible(true);
     }
 }
