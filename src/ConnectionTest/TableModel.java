@@ -67,10 +67,20 @@ public class TableModel extends AbstractTableModel {
         }
     }
 
-    public void addNewField(ConnectionDB connect, String username, String email, String telephone, String group, String password) {
-        String sql = "INSERT INTO users(username, email, telephone, group_number, password) VALUES (?,?,?,?,?)";
+    public void addRole(ConnectionDB connect, int id, int role) {
+        String sql = "INSERT INTO user_roles(user_id, role_id) VALUES(?,?)";
+        try{
+            connect.addUserRole(sql, id, role);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addNewField(ConnectionDB connect, int id, String username, String email, String telephone, String group, String password) {
+        String sql = "INSERT INTO users(id, username, email, telephone, group_number, password) VALUES (?,?,?,?,?,?)";
         try {
-            connect.prepareSetQuery(sql, username, email, telephone, group, password);
+            connect.prepareSetQuery(sql, id, username, email, telephone, group, password);
             JOptionPane.showMessageDialog(null, "Пользователь добавлен!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,9 +88,18 @@ public class TableModel extends AbstractTableModel {
     }
 
     public void deleteField(ConnectionDB connect, String id) {
-        String sql = "DELETE FROM users WHERE id = " + id;
+        String sql1 = "DELETE FROM users WHERE id = " + id;
+        String sql2 = "DELETE FROM cards WHERE user_id = " + id;
+        String sql3 = "DELETE FROM user_roles WHERE user_id = " + id;
+        String sql4 = "DELETE FROM payments WHERE card_id = " + id;
+        String sql5 = "DELETE FROM transfers WHERE card_id = " + id;
         try {
-            connect.prepareQuery(sql);
+            connect.prepareQuery(sql5);
+            connect.prepareQuery(sql4);
+            connect.prepareQuery(sql3);
+            connect.prepareQuery(sql2);
+            connect.prepareQuery(sql1);
+
             JOptionPane.showMessageDialog(null, "Пользователь c id = "+ id + " удален!");
         } catch (Exception e) {
             e.printStackTrace();
