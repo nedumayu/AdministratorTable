@@ -41,14 +41,27 @@ public class ConnectionDB {
         return null;
     }
 
-    public void prepareSetQuery(String sql, String username, String email, String telephone, String group, String password) {
+    public void prepareSetQuery(String sql, int id, String username, String email, String telephone, String group, String password) {
         try {
             PreparedStatement pst = postgresConnection.prepareStatement(sql);
-            pst.setString(1, username);
-            pst.setString(2, email);
-            pst.setString(3, telephone);
-            pst.setString(4, group);
-            pst.setString(5, password);
+            pst.setInt(1, id);
+            pst.setString(2, username);
+            pst.setString(3, email);
+            pst.setString(4, telephone);
+            pst.setString(5, group);
+            pst.setString(6, password);
+            pst.execute();
+            pst.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addUserRole(String sql, int id, int role) {
+        try {
+            PreparedStatement pst = postgresConnection.prepareStatement(sql);
+            pst.setInt(1, id);
+            pst.setInt(2, role);
             pst.execute();
             pst.close();
         } catch(SQLException e) {
